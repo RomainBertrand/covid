@@ -3,7 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
-def analysis(filename):
+def analysis(filename, return_values=False):
     dates = []
     cases = []
     deaths = []
@@ -16,6 +16,8 @@ def analysis(filename):
                 line[fields_indexes["year"]]+'-'+line[fields_indexes["month"]]+'-'+line[fields_indexes["day"]]))
             cases.append(int(line[fields_indexes["cases"]]))
             deaths.append(int(line[fields_indexes["deaths"]]))
+    if return_values:
+        return dates, cases, deaths
     plt.plot_date(dates, cases, fmt='.')
     plt.plot_date(dates, deaths, fmt='.')
     plt.show()
